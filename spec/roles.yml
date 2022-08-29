@@ -1,0 +1,3 @@
+roles:
+  business-admin: Business administrator (full privileges over all businesses)
+  business-auditor: Business auditor (viewing privileges over all businesses)

@@ -1,0 +1,77 @@
+config:
+    name: DCCS Corporation
+    company_url: https://dccs.tech
+    built_in_url: null
+
+    city: Washington
+    state: DC
+
+    tagline: "Bringing new life to your data practice"
+    description: "We are building an open source modular data management system"
+    employees: 1
+    year_founded: 2019
+
+    industries:
+        - data_management
+        - analytics
+        - apis
+        - cloud_computing
+
+    technologies:
+        Django: WebFramework
+        Celery: DistributedTaskProcessor
+        Redis: MemoryStore
+        PostgreSQL: RelationalDatabase
+
+    job_categories:
+        data_engineering: 5
+        data_science: 2
+        operations: 2
+        cloud_engineering: 10
+        application_engineering: 4
+
+run:
+    location:
+        _command: location save
+        location_fields:
+            city: "@city"
+            state: "@state"
+
+    industry_<<value>>:
+        _command: industry save
+        _foreach: "@industries"
+        industry_name: <<value>>
+
+    technology_<<dict_key>>:
+        _command: technology save
+        _foreach: "@technologies"
+        technology_name: <<dict_key>>
+        technology_fields:
+            type: <<value>>
+
+    business:
+        _requires:
+            - location
+            - "#prefix(@industries, industry_)"
+            - "#prefix(@technologies, technology_)"
+        _command: business save
+        location_name: "&-location(city=@city; state=@state)::id"
+        industries_names: "@industries"
+        technologies_names: "#keys(@technologies)"
+        business_fields:
+            name: "@name"
+            company_url: "@company_url"
+            built_in_url: "@built_in_url"
+            tagline: "@tagline"
+            description: "@description"
+            employees: "@employees"
+            year_founded: "@year_founded"
+
+    job_category_<<dict_key>>:
+        _requires: business
+        _command: job_category save
+        _foreach: "@job_categories"
+        business_name: "&-business(name=@name)::id"
+        job_category_name: <<dict_key>>
+        job_category_fields:
+            count: <<value>>

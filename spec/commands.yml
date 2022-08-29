@@ -1,0 +1,5 @@
+command:
+    business:
+        test:
+            base: business
+            priority: 950

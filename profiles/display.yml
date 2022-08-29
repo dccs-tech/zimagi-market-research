@@ -1,0 +1,58 @@
+config_store:
+    location_list_fields:
+        - city
+        - state
+    location_display_fields:
+        - city
+        - state
+        - created
+        - updated
+
+    industry_list_fields:
+        - name
+    industry_display_fields:
+        - name
+        - created
+        - updated
+
+    technology_list_fields:
+        - name
+        - type
+    technology_display_fields:
+        - name
+        - type
+        - created
+        - updated
+
+    business_list_fields:
+        - name
+        - tagline
+        - company_url
+        - built_in_url
+        - employees
+        - year_founded
+    business_display_fields:
+        - name
+        - tagline
+        - description
+        - company_url
+        - built_in_url
+        - employees
+        - year_founded
+        - created
+        - updated
+        - location
+        - industries
+        - technologies
+        - jobcategory_relation
+
+    job_category_list_fields:
+        - name
+        - count
+        - business
+    job_category_display_fields:
+        - name
+        - count
+        - created
+        - updated
+        - business

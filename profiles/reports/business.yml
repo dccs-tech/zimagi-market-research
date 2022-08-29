@@ -1,0 +1,37 @@
+parents:
+    - reports/base
+
+config:
+    filters: {}
+
+    fields:
+        - name
+        - built_in_url
+        - company_url
+        - city = location.city
+        - state = location.state
+        - tagline
+        - description
+        - employees
+        - year_founded
+
+    ordering:
+        - ~employees
+
+    processors: []
+
+data:
+    "business-@{identity}-#time(@time_format)":
+        _type: collection
+        _groups: business
+
+        prefix_column_query: false
+        prefix_column_identity: false
+
+        processors: "@processors"
+
+        queries:
+            business:
+                filters: "@filters"
+                fields: "@fields"
+                order: "@ordering"

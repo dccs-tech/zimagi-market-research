@@ -1,0 +1,123 @@
+_built_in_import: &built_in_import
+    tags: [ business ]
+    source: built_in
+    data:
+        location:
+            group: business
+            map:
+                id:
+                    column: location_id
+                    validators:
+                        string:
+                            empty: false
+                city:
+                    column: city
+                    validators:
+                        string:
+                            empty: false
+                state:
+                    column: state
+                    validators:
+                        string:
+                            empty: false
+
+        industry:
+            map:
+                name:
+                    column: name
+                    validators:
+                        string:
+                            empty: false
+
+        technology:
+            map:
+                name:
+                    column: name
+                    validators:
+                        string:
+                            empty: false
+                type:
+                    column: type
+                    validators:
+                        string:
+                            empty: false
+
+        business:
+            requires:
+                - location
+                - industry
+                - technology
+            relations:
+                location_id:
+                    data: location
+                    column: location_id
+                    required: false
+                industries:
+                    data: industry
+                    column: industries
+                    multiple: true
+                    required: true
+                technologies:
+                    data: technology
+                    column: technologies
+                    multiple: true
+                    required: false
+            map:
+                name:
+                    column: name
+                    validators:
+                        string:
+                            empty: false
+                built_in_url:
+                    column: built_in_url
+                    validators:
+                        string:
+                            empty: false
+                company_url:
+                    column: company_url
+                    validators:
+                        string:
+                            empty: false
+                tagline:
+                    column: tagline
+                description:
+                    column: description
+                    validators:
+                        string:
+                            empty: false
+                employees:
+                    column: employees
+                    validators:
+                        number:
+                            min: 1
+                year_founded:
+                    column: year_founded
+                    validators:
+                        number:
+                            min: 1600
+                            max: 2022
+
+        job_category:
+            requires: business
+            relations:
+                business_id:
+                    data: business
+                    key_field: name
+                    column: business
+                    required: true
+            map:
+                name:
+                    column: name
+                    validators:
+                        string:
+                            empty: false
+                count:
+                    column: count
+                    validators:
+                        number:
+                            min: 0
+
+import:
+    django_businesses:
+        <<: *built_in_import
+        focus: tech/django-companies

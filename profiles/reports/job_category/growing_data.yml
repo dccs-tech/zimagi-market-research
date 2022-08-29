@@ -1,0 +1,7 @@
+parents:
+    - reports/job_category
+
+config:
+    identity: growing_data
+    filters:
+        name: Data+Analytics

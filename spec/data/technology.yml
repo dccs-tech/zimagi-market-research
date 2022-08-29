@@ -1,0 +1,50 @@
+data_mixins:
+  technology:
+    class: TechnologyMixin
+    fields:
+      technology:
+        type: '@django.ForeignKey'
+        relation: technology
+        options:
+          'null': true
+          on_delete: '@django.PROTECT'
+          editable: false
+  technologies:
+    class: TechnologyMultipleMixin
+    fields:
+      technologies:
+        type: '@django.ManyToManyField'
+        relation: technology
+data_base:
+  technology:
+    class: TechnologyBase
+    base: id_resource
+    mixins:
+    - technology
+    id_fields:
+    - technology_id
+    - name
+    meta:
+      unique_together:
+      - technology
+      - name
+      scope: technology
+data:
+  technology:
+    class: Technology
+    base: name_resource
+    api: true
+    display: <name> (<type>)
+    roles:
+      edit:
+      - business-admin
+      view:
+      - public
+    fields:
+      type:
+        type: '@django.CharField'
+        options:
+          'null': true
+          default: null
+          max_length: 256
+    meta: null

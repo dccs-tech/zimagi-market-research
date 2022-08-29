@@ -1,0 +1,9 @@
+plugin:
+    source:
+        providers:
+            built_in:
+                option:
+                    focus:
+                        type: str
+                        default: tech/django-companies
+                        help: "Technology focus of business"

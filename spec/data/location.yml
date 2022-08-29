@@ -1,0 +1,66 @@
+data_mixins:
+  location:
+    class: LocationMixin
+    fields:
+      location:
+        type: '@django.ForeignKey'
+        relation: location
+        options:
+          'null': true
+          on_delete: '@django.PROTECT'
+          editable: false
+  locations:
+    class: LocationMultipleMixin
+    fields:
+      locations:
+        type: '@django.ManyToManyField'
+        relation: location
+data_base:
+  location:
+    class: LocationBase
+    base: id_resource
+    mixins:
+    - location
+    id_fields:
+    - location_id
+    - name
+    meta:
+      unique_together:
+      - location
+      - name
+      scope: location
+data:
+  location:
+    class: Location
+    base: id_resource
+    id_fields:
+    - city
+    - state
+    key: id
+    api: true
+    display: <city>, <state>
+    roles:
+      edit:
+      - business-admin
+      view:
+      - public
+    fields:
+      name: null
+      city:
+        type: '@django.CharField'
+        options:
+          'null': true
+          default: null
+          max_length: 256
+      state:
+        type: '@django.CharField'
+        options:
+          'null': true
+          default: null
+          max_length: 256
+    meta:
+      unique_together:
+      - city
+      - state
+      ordering:
+      - id

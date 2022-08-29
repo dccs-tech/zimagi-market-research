@@ -1,0 +1,4 @@
+plugin:
+    business:
+        base: data
+        data: business

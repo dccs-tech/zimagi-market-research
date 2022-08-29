@@ -1,0 +1,68 @@
+_base_model: &base_model
+    base: name_resource
+    admin_roles: [ business-admin ]
+    view_roles: [ public ]
+    priority: 60
+
+_base_id_model: &base_id_model
+    <<: *base_model
+    base: id_resource
+
+roles:
+    business-admin: Business administrator (full privileges over all businesses)
+    business-auditor: Business auditor (viewing privileges over all businesses)
+
+models:
+    location:
+        <<: *base_id_model
+        key: id
+        id_fields: [ city, state ]
+        name_field: false
+        display: "<city>, <state>"
+        fields:
+            city:
+                type: string
+            state:
+                type: string
+
+    industry:
+        <<: *base_model
+        plural: industries
+
+    technology:
+        <<: *base_model
+        plural: technologies
+        display: "<name> (<type>)"
+        fields:
+            type:
+                type: string
+
+    business:
+        <<: *base_id_model
+        key: id
+        plural_suffix: es
+        display: "<name>"
+        mixins: [ location, industries, technologies ]
+        priority: 65
+        fields:
+            built_in_url:
+                type: url
+            company_url:
+                type: url
+            tagline:
+                type: text
+            description:
+                type: text
+            employees:
+                type: integer
+            year_founded:
+                type: integer
+
+    job_category:
+        <<: *base_id_model
+        base: business
+        plural: job_categories
+        display: "<name> (<count>)"
+        fields:
+            count:
+                type: integer

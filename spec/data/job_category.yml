@@ -1,0 +1,49 @@
+data_mixins:
+  job_category:
+    class: JobCategoryMixin
+    fields:
+      job_category:
+        type: '@django.ForeignKey'
+        relation: job_category
+        options:
+          'null': true
+          on_delete: '@django.PROTECT'
+          editable: false
+  job_categories:
+    class: JobCategoryMultipleMixin
+    fields:
+      job_categories:
+        type: '@django.ManyToManyField'
+        relation: job_category
+data_base:
+  job_category:
+    class: JobCategoryBase
+    base: id_resource
+    mixins:
+    - job_category
+    id_fields:
+    - job_category_id
+    - name
+    meta:
+      unique_together:
+      - job_category
+      - name
+      scope: job_category
+data:
+  job_category:
+    class: JobCategory
+    base: business
+    api: true
+    display: <name> (<count>)
+    roles:
+      edit:
+      - business-admin
+      view:
+      - public
+    fields:
+      count:
+        type: '@django.IntegerField'
+        options:
+          'null': true
+          default: null
+    meta: null

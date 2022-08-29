@@ -1,0 +1,39 @@
+parents:
+    - reports/base
+
+config:
+    filters: {}
+
+    fields:
+        - name
+        - business_name = business.name
+        - built_in_url = business.built_in_url
+        - company_url = business.company_url
+        - city = business.location.city
+        - state = business.location.state
+        - tagline = business.tagline
+        - description = business.description
+        - year_founded = business.year_founded
+        - job_count = count
+        - employees = business.employees
+        - growth_ratio = growth_ratio(count, 'employees')
+
+    ordering: []
+    processors:
+        - sort('~growth_ratio', 'employees')
+
+data:
+    "job_category-@{identity}-#time(@time_format)":
+        _type: collection
+        _groups: job_category
+
+        prefix_column_query: false
+        prefix_column_identity: false
+
+        processors: "@processors"
+
+        queries:
+            job_category:
+                filters: "@filters"
+                fields: "@fields"
+                order: "@ordering"
