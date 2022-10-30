@@ -12,12 +12,15 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/chrome.gpg] " \
 apt-get update
 apt-get install -y google-chrome-stable
 
-echo "Installing Chrome Driver"
-CHROME_DRIVER_VERSION="104.0.5112.79"
+if [ ! -f /usr/bin/chromedriver ]; then
+        echo "Installing Chrome Driver"
+        CHROME_DRIVER_VERSION="$(wget -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)"
 
-wget -qN https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip -P /tmp
-rm -f /usr/bin/chromedriver
-unzip /tmp/chromedriver_linux64.zip -d /usr/bin
+        wget -N https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip -P /tmp
 
-chmod +x /usr/bin/chromedriver
-rm -f /tmp/chromedriver_linux64.zip
+        rm -f /usr/bin/chromedriver
+        unzip /tmp/chromedriver_linux64.zip -d /usr/bin
+
+        chmod +x /usr/bin/chromedriver
+        rm -f /tmp/chromedriver_linux64.zip
+fi
