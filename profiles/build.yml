@@ -42,7 +42,7 @@ models:
         key: id
         plural_suffix: es
         display: "<name>"
-        mixins: [ location, industries, technologies ]
+        mixins: [ location_optional, industries, technologies ]
         priority: 65
         fields:
             built_in_url:
