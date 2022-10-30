@@ -13,6 +13,16 @@ data_mixins:
                 options:
                     on_delete: "@django.PROTECT"
 
+    industry_optional:
+        class: IndustryOptionalMixin
+        fields:
+            industry:
+                type: "@django.ForeignKey"
+                relation: industry
+                options:
+                    on_delete: "@django.SET_NULL"
+                    "null": true
+
     industries:
         class: IndustryMultipleMixin
         fields:

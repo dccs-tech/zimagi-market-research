@@ -7,6 +7,15 @@ data_mixins:
         relation: job_category
         options:
           on_delete: '@django.PROTECT'
+  job_category_optional:
+    class: JobCategoryOptionalMixin
+    fields:
+      job_category:
+        type: '@django.ForeignKey'
+        relation: job_category
+        options:
+          on_delete: '@django.SET_NULL'
+          'null': true
   job_categories:
     class: JobCategoryMultipleMixin
     fields:

@@ -7,6 +7,15 @@ data_mixins:
         relation: location
         options:
           on_delete: '@django.PROTECT'
+  location_optional:
+    class: LocationOptionalMixin
+    fields:
+      location:
+        type: '@django.ForeignKey'
+        relation: location
+        options:
+          on_delete: '@django.SET_NULL'
+          'null': true
   locations:
     class: LocationMultipleMixin
     fields:

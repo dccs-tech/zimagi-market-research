@@ -7,6 +7,15 @@ data_mixins:
         relation: technology
         options:
           on_delete: '@django.PROTECT'
+  technology_optional:
+    class: TechnologyOptionalMixin
+    fields:
+      technology:
+        type: '@django.ForeignKey'
+        relation: technology
+        options:
+          on_delete: '@django.SET_NULL'
+          'null': true
   technologies:
     class: TechnologyMultipleMixin
     fields:

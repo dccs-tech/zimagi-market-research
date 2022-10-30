@@ -7,6 +7,15 @@ data_mixins:
         relation: business
         options:
           on_delete: '@django.PROTECT'
+  business_optional:
+    class: BusinessOptionalMixin
+    fields:
+      business:
+        type: '@django.ForeignKey'
+        relation: business
+        options:
+          on_delete: '@django.SET_NULL'
+          'null': true
   businesses:
     class: BusinessMultipleMixin
     fields:
@@ -34,7 +43,7 @@ data:
     class: Business
     base: id_resource
     mixins:
-    - location
+    - location_optional
     - industries
     - technologies
     key: id
@@ -46,17 +55,17 @@ data:
       view:
       - public
     fields:
-      description:
-        type: '@django.TextField'
-        options:
-          'null': true
-          default: null
       built_in_url:
         type: '@django.URLField'
         options:
           'null': true
           default: null
           max_length: 256
+      tagline:
+        type: '@django.TextField'
+        options:
+          'null': true
+          default: null
       company_url:
         type: '@django.URLField'
         options:
@@ -68,7 +77,7 @@ data:
         options:
           'null': true
           default: null
-      tagline:
+      description:
         type: '@django.TextField'
         options:
           'null': true
