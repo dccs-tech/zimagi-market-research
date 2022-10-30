@@ -6,7 +6,7 @@
 command_mixins:
     business:
         class: BusinessMixin
-        mixins: ['id_resource', 'location', 'industries', 'technologies']
+        mixins: ['id_resource', 'location_optional', 'industries', 'technologies']
         meta:
             business:
                 data: business
@@ -14,7 +14,7 @@ command_mixins:
 
     businesses:
         class: BusinessMultipleMixin
-        mixins: ['id_resource', 'location', 'industries', 'technologies']
+        mixins: ['id_resource', 'location_optional', 'industries', 'technologies']
         meta:
             businesses:
                 data: business
