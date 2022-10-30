@@ -10,9 +10,7 @@ command_mixins:
         meta:
             industry:
                 data: industry
-                provider: true
                 relations: true
-                default: base
 
     industries:
         class: IndustryMultipleMixin
@@ -20,9 +18,7 @@ command_mixins:
         meta:
             industries:
                 data: industry
-                provider: true
                 relations: true
-                default: base
 
 #
 # Define data related base command

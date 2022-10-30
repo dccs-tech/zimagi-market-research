@@ -6,15 +6,15 @@ data_mixins:
         type: '@django.ForeignKey'
         relation: business
         options:
-          'null': true
           on_delete: '@django.PROTECT'
-          editable: false
   businesses:
     class: BusinessMultipleMixin
     fields:
       businesses:
         type: '@django.ManyToManyField'
         relation: business
+        options:
+          blank: true
 data_base:
   business:
     class: BusinessBase
@@ -34,7 +34,6 @@ data:
     class: Business
     base: id_resource
     mixins:
-    - provider
     - location
     - industries
     - technologies
@@ -47,23 +46,8 @@ data:
       view:
       - public
     fields:
-      employees:
-        type: '@django.IntegerField'
-        options:
-          'null': true
-          default: null
       description:
         type: '@django.TextField'
-        options:
-          'null': true
-          default: null
-      tagline:
-        type: '@django.TextField'
-        options:
-          'null': true
-          default: null
-      year_founded:
-        type: '@django.IntegerField'
         options:
           'null': true
           default: null
@@ -79,7 +63,21 @@ data:
           'null': true
           default: null
           max_length: 256
+      employees:
+        type: '@django.IntegerField'
+        options:
+          'null': true
+          default: null
+      tagline:
+        type: '@django.TextField'
+        options:
+          'null': true
+          default: null
+      year_founded:
+        type: '@django.IntegerField'
+        options:
+          'null': true
+          default: null
     meta:
-      provider_name: business
       ordering:
       - id

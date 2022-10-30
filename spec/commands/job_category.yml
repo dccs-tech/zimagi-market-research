@@ -10,9 +10,7 @@ command_mixins:
         meta:
             job_category:
                 data: job_category
-                provider: true
                 relations: true
-                default: base
 
     job_categories:
         class: JobCategoryMultipleMixin
@@ -20,9 +18,7 @@ command_mixins:
         meta:
             job_categories:
                 data: job_category
-                provider: true
                 relations: true
-                default: base
 
 #
 # Define data related base command

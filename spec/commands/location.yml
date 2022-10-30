@@ -10,9 +10,7 @@ command_mixins:
         meta:
             location:
                 data: location
-                provider: true
                 relations: true
-                default: base
 
     locations:
         class: LocationMultipleMixin
@@ -20,9 +18,7 @@ command_mixins:
         meta:
             locations:
                 data: location
-                provider: true
                 relations: true
-                default: base
 
 #
 # Define data related base command

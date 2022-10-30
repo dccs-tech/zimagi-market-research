@@ -6,15 +6,15 @@ data_mixins:
         type: '@django.ForeignKey'
         relation: job_category
         options:
-          'null': true
           on_delete: '@django.PROTECT'
-          editable: false
   job_categories:
     class: JobCategoryMultipleMixin
     fields:
       job_categories:
         type: '@django.ManyToManyField'
         relation: job_category
+        options:
+          blank: true
 data_base:
   job_category:
     class: JobCategoryBase

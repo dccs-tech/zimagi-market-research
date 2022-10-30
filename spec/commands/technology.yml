@@ -10,9 +10,7 @@ command_mixins:
         meta:
             technology:
                 data: technology
-                provider: true
                 relations: true
-                default: base
 
     technologies:
         class: TechnologyMultipleMixin
@@ -20,9 +18,7 @@ command_mixins:
         meta:
             technologies:
                 data: technology
-                provider: true
                 relations: true
-                default: base
 
 #
 # Define data related base command

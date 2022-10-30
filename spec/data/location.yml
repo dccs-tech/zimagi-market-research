@@ -6,15 +6,15 @@ data_mixins:
         type: '@django.ForeignKey'
         relation: location
         options:
-          'null': true
           on_delete: '@django.PROTECT'
-          editable: false
   locations:
     class: LocationMultipleMixin
     fields:
       locations:
         type: '@django.ManyToManyField'
         relation: location
+        options:
+          blank: true
 data_base:
   location:
     class: LocationBase

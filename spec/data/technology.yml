@@ -6,15 +6,15 @@ data_mixins:
         type: '@django.ForeignKey'
         relation: technology
         options:
-          'null': true
           on_delete: '@django.PROTECT'
-          editable: false
   technologies:
     class: TechnologyMultipleMixin
     fields:
       technologies:
         type: '@django.ManyToManyField'
         relation: technology
+        options:
+          blank: true
 data_base:
   technology:
     class: TechnologyBase

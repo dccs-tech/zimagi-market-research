@@ -10,9 +10,7 @@ command_mixins:
         meta:
             business:
                 data: business
-                provider: true
                 relations: true
-                default: base
 
     businesses:
         class: BusinessMultipleMixin
@@ -20,9 +18,7 @@ command_mixins:
         meta:
             businesses:
                 data: business
-                provider: true
                 relations: true
-                default: base
 
 #
 # Define data related base command
