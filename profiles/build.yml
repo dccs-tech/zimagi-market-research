@@ -1,5 +1,6 @@
 _base_model: &base_model
     base: id_resource
+    key: id
     admin_roles: [ business-admin ]
     view_roles: [ public ]
     priority: 60
@@ -11,7 +12,6 @@ roles:
 models:
     location:
         <<: *base_model
-        key: id
         id_fields: [ city, state ]
         name_field: false
         display: "<city>, <state>"
@@ -35,7 +35,6 @@ models:
 
     business:
         <<: *base_model
-        key: id
         plural_suffix: es
         display: "<name>"
         mixins: [ location_optional, industries, technologies ]
