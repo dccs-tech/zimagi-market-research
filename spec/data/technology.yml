@@ -41,7 +41,7 @@ data_base:
 data:
   technology:
     class: Technology
-    base: name_resource
+    base: id_resource
     api: true
     display: <name> (<type>)
     roles:

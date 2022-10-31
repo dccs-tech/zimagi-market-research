@@ -6,7 +6,7 @@
 command_mixins:
     technology:
         class: TechnologyMixin
-        mixins: ['name_resource']
+        mixins: ['id_resource']
         meta:
             technology:
                 data: technology
@@ -14,7 +14,7 @@ command_mixins:
 
     technologies:
         class: TechnologyMultipleMixin
-        mixins: ['name_resource']
+        mixins: ['id_resource']
         meta:
             technologies:
                 data: technology

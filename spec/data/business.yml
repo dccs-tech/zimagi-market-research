@@ -55,13 +55,7 @@ data:
       view:
       - public
     fields:
-      built_in_url:
-        type: '@django.URLField'
-        options:
-          'null': true
-          default: null
-          max_length: 256
-      tagline:
+      description:
         type: '@django.TextField'
         options:
           'null': true
@@ -72,17 +66,23 @@ data:
           'null': true
           default: null
           max_length: 256
-      employees:
-        type: '@django.IntegerField'
-        options:
-          'null': true
-          default: null
-      description:
+      tagline:
         type: '@django.TextField'
         options:
           'null': true
           default: null
+      built_in_url:
+        type: '@django.URLField'
+        options:
+          'null': true
+          default: null
+          max_length: 256
       year_founded:
+        type: '@django.IntegerField'
+        options:
+          'null': true
+          default: null
+      employees:
         type: '@django.IntegerField'
         options:
           'null': true

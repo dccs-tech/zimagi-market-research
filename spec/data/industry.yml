@@ -50,7 +50,7 @@ data_base:
 data:
     industry:
         class: Industry
-        base: name_resource
+        base: id_resource
         api: True
         roles:
             edit: ['business-admin']

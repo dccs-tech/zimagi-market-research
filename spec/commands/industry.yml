@@ -6,7 +6,7 @@
 command_mixins:
     industry:
         class: IndustryMixin
-        mixins: ['name_resource']
+        mixins: ['id_resource']
         meta:
             industry:
                 data: industry
@@ -14,7 +14,7 @@ command_mixins:
 
     industries:
         class: IndustryMultipleMixin
-        mixins: ['name_resource']
+        mixins: ['id_resource']
         meta:
             industries:
                 data: industry
