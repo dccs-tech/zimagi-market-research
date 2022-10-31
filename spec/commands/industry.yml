@@ -5,6 +5,7 @@
 #
 command_mixins:
     industry:
+        aliases: ["industry_optional"]
         class: IndustryMixin
         mixins: ['id_resource']
         meta:

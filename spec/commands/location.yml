@@ -5,6 +5,7 @@
 #
 command_mixins:
     location:
+        aliases: ["location_optional"]
         class: LocationMixin
         mixins: ['id_resource']
         meta:

@@ -5,6 +5,7 @@
 #
 command_mixins:
     technology:
+        aliases: ["technology_optional"]
         class: TechnologyMixin
         mixins: ['id_resource']
         meta:

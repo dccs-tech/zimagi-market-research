@@ -42,6 +42,7 @@ data:
   job_category:
     class: JobCategory
     base: business
+    key: id
     api: true
     display: <name> (<count>)
     roles:
@@ -55,4 +56,6 @@ data:
         options:
           'null': true
           default: null
-    meta: null
+    meta:
+      ordering:
+      - id

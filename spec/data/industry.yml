@@ -51,9 +51,11 @@ data:
     industry:
         class: Industry
         base: id_resource
+        key: id
         api: True
         roles:
             edit: ['business-admin']
             view: ['public']
         fields:
         meta:
+            ordering: ['id']

@@ -55,13 +55,13 @@ data:
       - public
     fields:
       name: null
-      city:
+      state:
         type: '@django.CharField'
         options:
           'null': true
           default: null
           max_length: 256
-      state:
+      city:
         type: '@django.CharField'
         options:
           'null': true

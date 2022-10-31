@@ -5,6 +5,7 @@
 #
 command_mixins:
     business:
+        aliases: ["business_optional"]
         class: BusinessMixin
         mixins: ['id_resource', 'location_optional', 'industries', 'technologies']
         meta:

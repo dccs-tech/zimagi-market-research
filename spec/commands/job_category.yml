@@ -5,6 +5,7 @@
 #
 command_mixins:
     job_category:
+        aliases: ["job_category_optional"]
         class: JobCategoryMixin
         mixins: ['business']
         meta:
