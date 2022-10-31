@@ -40,12 +40,12 @@ run:
     industry_<<value>>:
         _command: industry save
         _foreach: "@industries"
-        industry_name: <<value>>
+        industry_key: <<value>>
 
     technology_<<dict_key>>:
         _command: technology save
         _foreach: "@technologies"
-        technology_name: <<dict_key>>
+        technology_key: <<dict_key>>
         technology_fields:
             type: <<value>>
 
@@ -55,9 +55,9 @@ run:
             - "#prefix(@industries, industry_)"
             - "#prefix(@technologies, technology_)"
         _command: business save
-        location_name: "&-location(city=@city; state=@state)::id"
-        industries_names: "@industries"
-        technologies_names: "#keys(@technologies)"
+        location_key: "&-location(city=@city; state=@state)::id"
+        industries_keys: "@industries"
+        technologies_keys: "#keys(@technologies)"
         business_fields:
             name: "@name"
             company_url: "@company_url"
@@ -71,7 +71,7 @@ run:
         _requires: business
         _command: job_category save
         _foreach: "@job_categories"
-        business_name: "&-business(name=@name)::id"
-        job_category_name: <<dict_key>>
+        business_key: "&-business(name=@name)::id"
+        job_category_key: <<dict_key>>
         job_category_fields:
             count: <<value>>
