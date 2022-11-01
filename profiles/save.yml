@@ -1,3 +1,6 @@
+#
+# This is a test profile to test command execution and model integrity
+#
 config:
     name: DCCS Corporation
     company_url: https://dccs.tech
@@ -37,27 +40,46 @@ run:
             city: "@city"
             state: "@state"
 
+    location_id:
+        _requires: [location]
+        _module: core
+        _task: echo
+        text: "Location ID: &[location_id]-location(city=@city; state=@state)::id"
+
+
     industry_<<value>>:
         _command: industry save
         _foreach: "@industries"
-        industry_key: <<value>>
+        industry_fields:
+            name: <<value>>
+
+    industry_ids:
+        _requires: "#prefix(@industries, industry_)"
+        _module: core
+        _task: echo
+        text: "Industry IDs: &[industry_ids]industry(name__in=@industries)::id"
+
 
     technology_<<dict_key>>:
         _command: technology save
         _foreach: "@technologies"
-        technology_key: <<dict_key>>
         technology_fields:
+            name: <<dict_key>>
             type: <<value>>
 
+    technology_ids:
+        _requires: "#prefix(@technologies, technology_)"
+        _module: core
+        _task: echo
+        text: "Technology IDs: &[technology_ids]technology(name__in=#keys(@technologies))::id"
+
+
     business:
-        _requires:
-            - location
-            - "#prefix(@industries, industry_)"
-            - "#prefix(@technologies, technology_)"
+        _requires: [location_id, industry_ids, technology_ids]
         _command: business save
-        location_key: "&-location(city=@city; state=@state)::id"
-        industries_keys: "@industries"
-        technologies_keys: "#keys(@technologies)"
+        location_key: "@location_id"
+        industries_keys: "@industry_ids"
+        technologies_keys: "@technology_ids"
         business_fields:
             name: "@name"
             company_url: "@company_url"
@@ -67,11 +89,24 @@ run:
             employees: "@employees"
             year_founded: "@year_founded"
 
+    business_id:
+        _requires: [business]
+        _module: core
+        _task: echo
+        text: "Business ID: &[business_id]-business(name=@name)::id"
+
+
     job_category_<<dict_key>>:
-        _requires: business
+        _requires: business_id
         _command: job_category save
         _foreach: "@job_categories"
-        business_key: "&-business(name=@name)::id"
-        job_category_key: <<dict_key>>
+        business_key: "@business_id"
         job_category_fields:
+            name: <<dict_key>>
             count: <<value>>
+
+    job_category_ids:
+        _requires: "#prefix(@job_categories, job_category_)"
+        _module: core
+        _task: echo
+        text: "Job Category IDs: &[job_category_ids]job_category(business=@business_id; name__in=#keys(@job_categories))::id"
