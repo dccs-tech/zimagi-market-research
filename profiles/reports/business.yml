@@ -2,8 +2,9 @@ parents:
     - reports/base
 
 config:
-    filters: {}
+    name: "business-@{identity}-#time(@time_format)"
 
+    filters: {}
     fields:
         - name
         - built_in_url
@@ -21,7 +22,7 @@ config:
     processors: []
 
 data:
-    "business-@{identity}-#time(@time_format)":
+    "@name":
         _type: collection
         _groups: business
 

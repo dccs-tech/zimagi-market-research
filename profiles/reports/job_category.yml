@@ -2,8 +2,9 @@ parents:
     - reports/base
 
 config:
-    filters: {}
+    name: "job_category-@{identity}-#time(@time_format)"
 
+    filters: {}
     fields:
         - name
         - business_name = business.name
@@ -23,7 +24,7 @@ config:
         - sort('~growth_ratio', 'employees')
 
 data:
-    "job_category-@{identity}-#time(@time_format)":
+    "@name":
         _type: collection
         _groups: job_category
 

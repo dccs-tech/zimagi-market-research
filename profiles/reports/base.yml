@@ -1,4 +1,4 @@
 config:
-    identity: null
+    identity: "default"
 
     time_format: "%Y-%m-%d"
