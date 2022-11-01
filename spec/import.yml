@@ -54,11 +54,13 @@ _built_in_import: &built_in_import
                     required: false
                 industries:
                     data: industry
+                    key_field: name
                     column: industries
                     multiple: true
                     required: true
                 technologies:
                     data: technology
+                    key_field: name
                     column: technologies
                     multiple: true
                     required: false
