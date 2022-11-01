@@ -1,0 +1,36 @@
+config:
+    data_import_names:
+      - django_businesses
+
+    datasets:
+        growing_data_practice:
+            module: built_in
+            profile: reports/job_category/growing_data
+
+    import_data: true
+    generate_datasets: true
+    remove_datasets: true
+
+run:
+    import_data:
+        _when: "@import_data"
+        _command: import
+        import_names: "@data_import_names"
+
+    "generate_<<dict_key>>":
+        _when: "@generate_datasets"
+        _requires: import_data
+        _foreach: "@datasets"
+        _command: run
+        module_key: "<<module>>"
+        profile_key: "<<profile>>"
+        profile_config_fields:
+            name: "<<dict_key>>"
+
+destroy:
+    "remove_dataset_<<dict_key>>":
+        _when: "@remove_datasets"
+        _foreach: "@datasets"
+        _command: data remove
+        dataset_key: "<<dict_key>>"
+        force: true
